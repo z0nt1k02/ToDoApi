@@ -1,6 +1,12 @@
-﻿namespace ToDoApi;
+﻿using ToDoApi.Dto;
+using ToDoApi.Models;
 
-public class NoteMapper
+namespace ToDoApi;
+
+public static class NoteMapper
 {
-    
+    public static CreateUpdateNoteDto ToDto(this NoteModel noteModel)
+    {
+        return new CreateUpdateNoteDto(noteModel.Id,noteModel.Name,noteModel.Content);
+    }
 }

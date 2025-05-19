@@ -1,6 +1,18 @@
-﻿namespace ToDoApi.Extensions;
+﻿using ToDoApi.Authentication;
+using ToDoApi.Contracts;
+using ToDoApi.Repositories;
 
-public class DIExtension
+namespace ToDoApi.Extensions;
+
+public static class DIExtension
 {
-    
+    public static void AddCustomServices(this IServiceCollection serviceCollection)
+    {
+        
+        serviceCollection.AddScoped<IUserRepository, UserRepository>();
+        serviceCollection.AddScoped<ITokenProvider, TokenProvider>();
+        serviceCollection.AddScoped<IPasswordHasher, PasswordHasher>();
+        
+        serviceCollection.AddScoped<INoteRepository, NoteRepository>();
+    }
 }

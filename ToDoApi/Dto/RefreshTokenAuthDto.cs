@@ -1,3 +1,3 @@
 ﻿namespace ToDoApi.Dto;
 
-public record RefreshTokenAuthDto();
+public record RefreshTokenAuthDto(string RefreshToken);

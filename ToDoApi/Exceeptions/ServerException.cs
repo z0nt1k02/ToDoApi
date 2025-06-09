@@ -1,0 +1,1 @@
+public record ServerException(string Message);

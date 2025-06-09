@@ -1,3 +1,3 @@
 ﻿namespace ToDoApi.Dto;
 
-public record CreateUpdateNoteDto(int id,string name,string content);
+public record class CreateUpdateNoteDto(string name,string content);

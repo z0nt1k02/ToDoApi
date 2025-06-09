@@ -14,7 +14,7 @@ public static class AuthorizationExtension
         {
             options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            
         }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
         {
             options.SaveToken = true;

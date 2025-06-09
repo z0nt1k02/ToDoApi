@@ -1,5 +1,6 @@
 ﻿using ToDoApi.Authentication;
 using ToDoApi.Contracts;
+using ToDoApi.Infrastructure;
 using ToDoApi.Repositories;
 
 namespace ToDoApi.Extensions;
@@ -14,5 +15,9 @@ public static class DIExtension
         serviceCollection.AddScoped<IPasswordHasher, PasswordHasher>();
         
         serviceCollection.AddScoped<INoteRepository, NoteRepository>();
+        serviceCollection.AddScoped<RefreshTokenRepository>();
+
+        serviceCollection.AddScoped<LoginUserWithRefreshToken>();
+        serviceCollection.AddScoped<RevokeRefreshTokens>();
     }
 }

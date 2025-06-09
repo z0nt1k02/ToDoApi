@@ -16,6 +16,7 @@ public class NoteController : ControllerBase
         _noteRepository = noteRepository;
     }
 
+    
     [HttpGet]
     public async Task<IActionResult> GetNotes()
     {
@@ -30,26 +31,26 @@ public class NoteController : ControllerBase
         {
             return Unauthorized();
         }*/
-        return Ok(note);
+        return Ok(note); 
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddNote(CreateUpdateNoteDto note)
+    public async Task<IActionResult> AddNote(CreateUpdateNoteDto dto)
     {
         var newNote = new NoteModel
         {
             CreatedDate = DateTime.Now,
-            Name = note.name,
-            Content = note.content,
+            Name = dto.name,
+            Content = dto.content,
             UserId = null,
             User = null
         };
         await _noteRepository.AddNote(newNote);
-        return Ok();
+        return CreatedAtAction(nameof(GetNote), new { id = newNote.Id }, newNote.ToDto());
     }
     
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateNote(int id,CreateUpdateNoteDto noteDto)
+    public async Task<IActionResult> UpdateNote(int id,NoteDto noteDto)
     {
         var note = await _noteRepository.GetNote(id);
         if (note == null)
@@ -75,5 +76,12 @@ public class NoteController : ControllerBase
         await _noteRepository.DeleteNote(note);
         return Ok("Note deleted");
 
+    }
+
+    [HttpGet]
+    [Route("test")]
+    public IActionResult Test()
+    {
+        throw new Exception("Ошибка сервера");
     }
 }
